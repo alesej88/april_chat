@@ -106,7 +106,9 @@ public class ClientHandler {
             e.printStackTrace();
         }
     }
-
+/* Добавить отключение неавторизованных пользователей по таймауту
+(120 сек. ждём после подключения клиента, и если он не авторизовался за это время, закрываем соединение).
+ */
     private void checkGuestAuth(final String message) {
         if (message.startsWith("/authGuest ")) {
             nickname = message.split("\\s")[1];
