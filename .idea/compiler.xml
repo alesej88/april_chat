@@ -7,7 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="chat_client" />
+        <module name="chat_server" />
+        <module name="chat-common" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="chat-client-network" target="14" />
+    </bytecodeTargetLevel>
   </component>
 </project>
