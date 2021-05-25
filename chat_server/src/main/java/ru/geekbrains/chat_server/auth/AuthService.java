@@ -1,6 +1,10 @@
 package ru.geekbrains.chat_server.auth;
 
 public interface AuthService {
+    String getNickname(String login, String password);
+
+    boolean changeNickName(String currentNickname, String newNickname);
+
     void start();
     void stop();
     String getUsernameByLoginAndPassword(String login, String password);
