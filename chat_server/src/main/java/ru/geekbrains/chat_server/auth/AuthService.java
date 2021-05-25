@@ -10,5 +10,6 @@ public interface AuthService {
     String getUsernameByLoginAndPassword(String login, String password);
     String changeUsername(String oldName, String newName);
     String changePassword(String username, String oldPassword, String newPassword);
-
+    String getNickName(String login, String password);
+    String changeNickname(String currentNickname, String newNickname);
 }
