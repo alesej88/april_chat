@@ -10,11 +10,13 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
 
 public class ChatServer {
     private static final int PORT = 12256;
     private List<ClientHandler> listOnlineUsers;
     private AuthService authService;
+    private ExecutorService clientsExecutorService;
 
     public ChatServer() {
         this.listOnlineUsers = new ArrayList<>();
@@ -80,4 +82,7 @@ public class ChatServer {
     public AuthService getAuthService() {
         return authService;
     }
+}
+public ExecutorService getClientsExecutorService(){
+    return clientsExecutorService;
 }
