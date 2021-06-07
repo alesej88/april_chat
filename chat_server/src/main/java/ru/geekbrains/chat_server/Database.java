@@ -3,6 +3,8 @@ package ru.geekbrains.chat_server;
 import javax.imageio.plugins.tiff.GeoTIFFTagSet;
 import java.io.IOException;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Database {
     private static Connection connection;
@@ -11,19 +13,21 @@ public class Database {
     private static PreparedStatement getUserNicknameStatement;
     private static PreparedStatement changeUserNicknameStatement;
     private static PreparedStatement deleteUserStatement;
+    private static final Logger logger = Logger.getLogger(Database.class.getName());
 
 
     public static boolean connect(){
+        logger.setLevel1(Level.ALL);
         try {
             Class.forName("org.sqlite.JDBC");
             connection = DriverManager.getConnection("jdbc:sqlite:database/chat.db");
-            System.out.println("Connect to data base");
+            logger.log(Level.INFO, "Connect to the database!");
             statement = connection.createStatement();
             createUserTable();
             prepareAllStatement();
             return true;
         }catch (ClassNotFoundException | SQLException e){
-            e.printStackTrace();
+            logger.log(Level.SEVERE, e.getMessage(), e);
             return false;
     }
     }
@@ -31,7 +35,7 @@ public class Database {
         try{
             statement.close();
         }catch (SQLException e){
-            e.printStackTrace();
+           logger.log(Level.SEVERE, e.getMessage(), e);
         }
         try{
     connection.close();
@@ -71,7 +75,7 @@ public class Database {
                 }
             rs.close();
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.log(Level.SEVERE, e.getMessage(), e);
         }
         return nickname;
         }

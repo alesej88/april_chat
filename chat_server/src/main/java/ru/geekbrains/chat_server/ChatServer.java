@@ -1,5 +1,6 @@
 package ru.geekbrains.chat_server;
 
+import org.mortbay.jetty.Server;
 import ru.geekbrains.april_chat.common.ChatMessage;
 import ru.geekbrains.april_chat.common.MessageType;
 import ru.geekbrains.chat_server.auth.AuthService;
@@ -11,12 +12,14 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
+import java.util.logging.Logger;
 
 public class ChatServer {
     private static final int PORT = 12256;
     private List<ClientHandler> listOnlineUsers;
     private AuthService authService;
     private ExecutorService clientsExecutorService;
+    private static final Logger logger = Logger.getLogger(Server.class.getName());
 
     public ChatServer() {
         this.listOnlineUsers = new ArrayList<>();
